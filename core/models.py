@@ -7,8 +7,6 @@ class User(AbstractUser):
     timezone = models.CharField(max_length=50, null=True, blank=True)
     bio = models.TextField(null=True, blank=True)
     phone_number = models.CharField(max_length=20, null=True, blank=True)
-    # email_verified = models.BooleanField(default=False)
-    # two_factor_auth = models.BooleanField(default=False)
 
     def __str__(self):
         return self.username

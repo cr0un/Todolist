@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth.admin import UserAdmin as DefaultUserAdmin
-from django.contrib.auth.forms import ReadOnlyPasswordHashField, SetPasswordForm
+from django.contrib.auth.forms import SetPasswordForm
 from django.utils.translation import gettext_lazy as _
 from .models import User
 
