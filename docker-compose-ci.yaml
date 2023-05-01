@@ -27,7 +27,8 @@ services:
       - .env
     volumes:
       - ./Todolist:/app/Todolist
-      - ./Todolist/staticfiles
+      - ./Todolist/staticfiles:/Todolist/staticfiles
+      - ./django_media:/Todolist/django_media
 
   migrations:
     build:
@@ -36,7 +37,7 @@ services:
       postgres:
         condition: service_healthy
     volumes:
-      - ./Todolist/staticfiles:/Todolist/staticfiles
+      - ./Todolist:/app/Todolist
     command: >
       sh -c "python manage.py makemigrations && python manage.py migrate"
 

@@ -27,6 +27,7 @@ services:
     volumes:
       - ./Todolist:/app/Todolist
       - ./Todolist/staticfiles:/Todolist/staticfiles
+      - ./django_media:/Todolist/django_media
 
   migrations:
     build:
