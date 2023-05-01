@@ -24,6 +24,12 @@ services:
         condition: service_healthy
     volumes:
       - ./Todolist:/app/Todolist
+    environment:
+      - DB_NAME=todolist_db
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - DB_HOST=postgres
+      - DB_PORT=5432
 
   migrations:
     build:
