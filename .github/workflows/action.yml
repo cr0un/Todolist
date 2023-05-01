@@ -31,6 +31,7 @@ jobs:
       - name: Prepare deployment folder
         run: |
           mkdir deploy
+          cp ./docker-compose.yaml deploy1/
           cat docker-compose-ci.yaml | envsubst > deploy/docker-compose.yaml
       - name: clone files to server
         uses: appleboy/scp-action@master
