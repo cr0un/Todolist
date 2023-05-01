@@ -39,7 +39,7 @@ services:
 
   front:
     build:
-      context: /home/runner/work/Todolist/Todolist/Todolist/front
+      context: ./Todolist/front
       dockerfile: docker/Dockerfile
     depends_on:
       - api
