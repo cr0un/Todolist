@@ -1,0 +1,47 @@
+version: "3.9"
+services:
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: todolist_db
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+
+  api:
+    build:
+      context: .
+    ports:
+    - 8000:80
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ./Todolist:/app/Todolist
+
+  migrations:
+    build:
+      context: .
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ./Todolist:/app/Todolist
+    command: >
+      sh -c "python manage.py makemigrations && python manage.py migrate"
+
+  front:
+    build:
+      context: ./front
+      dockerfile: docker/Dockerfile
+    depends_on:
+      - api
+    ports:
+      - "80:80"
+    environment:
+      - REACT_APP_API_URL=http://api:8000/
