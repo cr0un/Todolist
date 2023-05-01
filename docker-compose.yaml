@@ -26,6 +26,7 @@ services:
       - .env
     volumes:
       - ./Todolist:/app/Todolist
+      - ./Todolist/staticfiles
 
   migrations:
     build:
