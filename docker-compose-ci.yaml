@@ -36,7 +36,7 @@ services:
       postgres:
         condition: service_healthy
     volumes:
-      - ./Todolist:/app/Todolist
+      - ./Todolist/staticfiles:/Todolist/staticfiles
     command: >
       sh -c "python manage.py makemigrations && python manage.py migrate"
 
