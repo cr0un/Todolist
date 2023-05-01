@@ -1,24 +1,47 @@
-version: "3.10"
+version: "3.9"
 services:
-  api:
-    image: cr0un/Todolist:$GITHUB_REF_NAME-$GITHUB_RUN_ID
-    ports:
-    - 8000:8000
-    depends_on:
-      postgres:
-        condition: service_healthy
-    volumes:
-      - ./docker_config.py:/code/default_config.py
   postgres:
     image: postgres:latest
     environment:
-      POSTGRES_USER: $DB_USER
-      POSTGRES_PASSWORD: $DB_PASSWORD
-      POSTGRES_DB: $DB_NAME
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: todolist_db
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
       interval: 5s
       timeout: 5s
       retries: 5
     volumes:
       - ./postgres-data:/var/lib/postgresql/data
+
+  api:
+    build:
+      context: .
+    ports:
+    - 8000:80
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ./Todolist:/app/Todolist
+
+  migrations:
+    build:
+      context: .
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ./Todolist:/app/Todolist
+    command: >
+      sh -c "python manage.py makemigrations && python manage.py migrate"
+
+  front:
+    build:
+      context: ./front
+      dockerfile: docker/Dockerfile
+    depends_on:
+      - api
+    ports:
+      - "80:80"
+    environment:
+      - REACT_APP_API_URL=http://api:8000/
