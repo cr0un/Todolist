@@ -37,9 +37,7 @@ services:
       sh -c "python manage.py makemigrations && python manage.py migrate"
 
   front:
-    build:
-      context: ./Todolist/front
-      dockerfile: docker/Dockerfile
+    build: .
     depends_on:
       - api
     ports:
