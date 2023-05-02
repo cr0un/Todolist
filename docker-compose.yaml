@@ -49,13 +49,4 @@ services:
     ports:
       - "8080:80"
     environment:
-      - REACT_APP_API_URL=http://api:8000/
-
-
-
-
-
-
-
-
-
+      - REACT_APP_API_URL=http://api:8080/
