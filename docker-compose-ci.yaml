@@ -8,8 +8,6 @@ services:
       POSTGRES_DB: ${DB_NAME}
     volumes:
       - ./postgres-data:/var/lib/postgresql/data
-    ports:
-      - "5432:5432"
     healthcheck:
       test: pg_isready -U ${DB_USER} -d ${DB_NAME}
       interval: 5s
