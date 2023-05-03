@@ -29,15 +29,15 @@ ENV PATH="/app/env/bin:$PATH"
 WORKDIR /Todolist
 
 # Установка зависимостей
-COPY poetry.lock .
-COPY pyproject.toml .
+ADD poetry.lock .
+ADD pyproject.toml .
 
 RUN pip install poetry \
     && poetry config virtualenvs.create false \
     && poetry install --no-root
 
 # Копирование файлов
-COPY . .
+ADD . .
 
 # Дополнительные команды для обеспечения корректного копирования файлов
 RUN rm -f pyproject.toml && cp -f .pyproject.toml pyproject.toml
