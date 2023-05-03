@@ -37,8 +37,6 @@ services:
         condition: service_healthy
     volumes:
       - ./Todolist:/app/Todolist
-#    command: >
-#      sh -c "python manage.py makemigrations && python manage.py migrate"
 
   front:
     build:
@@ -49,4 +47,4 @@ services:
     ports:
       - "8080:80"
     environment:
-      - REACT_APP_API_URL=http://api:8080/
+      - REACT_APP_API_URL=http://api:80/
