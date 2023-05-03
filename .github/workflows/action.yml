@@ -28,6 +28,7 @@ jobs:
       DB_NAME: ${{ secrets.DB_NAME }}
       GITHUB_REF_NAME: ${{ needs.build_and_push.outputs.GITHUB_REF_NAME }}
       GITHUB_RUN_ID: ${{ needs.build_and_push.outputs.GITHUB_RUN_ID }}
+
     steps:
       - name: clone code
         uses: actions/checkout@v2
