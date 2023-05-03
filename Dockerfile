@@ -39,9 +39,6 @@ RUN pip install poetry \
 # Копирование файлов
 ADD . .
 
-# Дополнительные команды для обеспечения корректного копирования файлов
-RUN rm -f pyproject.toml && cp -f .pyproject.toml pyproject.toml
-RUN rm -f poetry.lock && cp -f .poetry.lock poetry.lock
-
 # Запуск приложения
 CMD ["gunicorn", "Todolist.wsgi:application", "--bind", "0.0.0.0:8000"]
+
