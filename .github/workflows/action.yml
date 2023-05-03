@@ -15,6 +15,8 @@ jobs:
       - name: docker build
 #        run: docker build -t cr0un/todolist:${{ github.ref_name }}-${{ github.run_id }} .
         run: docker build --no-cache -t cr0un/todolist:${{ github.ref_name }}-${{ github.run_id }} .
+      - name: docker tag
+        run: docker tag cr0un/todolist:${{ github.ref_name }}-${{ github.run_id }} cr0un/todolist:latest
       - name: docker login
         run: echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
       - name: docker push
