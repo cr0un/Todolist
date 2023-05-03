@@ -11,7 +11,7 @@ jobs:
       GITHUB_RUN_ID: ${{ github.run_id }}
     steps:
       - name: clone code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: docker build
         run: docker build -t cr0un/todolist:${{ github.ref_name }}-${{ github.run_id }} .
       - name: docker login
@@ -31,7 +31,7 @@ jobs:
 
     steps:
       - name: clone code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Prepare deployment folder
         run: |
           mkdir deploy
