@@ -162,6 +162,5 @@ SOCIAL_AUTH_LOGIN_ERROR_URL = '/login-error/'
 
 # Путь для хранения данных о социальной авторизации пользователя
 SOCIAL_AUTH_USER_MODEL = AUTH_USER_MODEL
-
 CORS_ORIGIN_ALLOW_ALL = True
 

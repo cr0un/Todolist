@@ -6,20 +6,22 @@ services:
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_DB: ${DB_NAME}
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
     healthcheck:
-      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      test: pg_isready -U ${DB_USER} -d ${DB_NAME}
       interval: 5s
       timeout: 5s
       retries: 5
-    volumes:
-      - ./postgres-data:/var/lib/postgresql/data
 
   api:
     image: cr0un/todolist:$GITHUB_REF_NAME-$GITHUB_RUN_ID
     build:
       context: .
     ports:
-      - 8000:80
+      - 8000:8000
     depends_on:
       postgres:
         condition: service_healthy
@@ -30,23 +32,15 @@ services:
       - ./Todolist/staticfiles:/Todolist/staticfiles
       - ./django_media:/Todolist/django_media
 
-  migrations:
-    build:
-      context: .
-    depends_on:
-      postgres:
-        condition: service_healthy
-    volumes:
-      - ./Todolist:/app/Todolist
-
   front:
     build:
       context: ./front
       dockerfile: docker/Dockerfile
     depends_on:
-      - api
+      api:
+        condition: service_started
     ports:
-      - "8080:80"
+      - "80:80"
     environment:
       - REACT_APP_API_URL=http://api:80/
 
