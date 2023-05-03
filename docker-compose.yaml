@@ -37,8 +37,8 @@ services:
         condition: service_healthy
     volumes:
       - ./Todolist:/app/Todolist
-    command: >
-      sh -c "python manage.py makemigrations && python manage.py migrate"
+#    command: >
+#      sh -c "python manage.py makemigrations && python manage.py migrate"
 
   front:
     build:
