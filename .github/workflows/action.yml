@@ -13,7 +13,8 @@ jobs:
       - name: clone code
         uses: actions/checkout@v3
       - name: docker build
-        run: docker build -t cr0un/todolist:${{ github.ref_name }}-${{ github.run_id }} .
+#        run: docker build -t cr0un/todolist:${{ github.ref_name }}-${{ github.run_id }} .
+        run: docker build --no-cache -t cr0un/todolist:${{ github.ref_name }}-${{ github.run_id }} .
       - name: docker login
         run: echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
       - name: docker push
