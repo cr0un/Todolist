@@ -20,4 +20,4 @@ COPY . .
 RUN #pip install --no-cache-dir --use-pep517 -r requirements.txt
 
 # Запуск приложения
-CMD ["python", "manage.py", "runserver", "0.0.0.0:80"]
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
