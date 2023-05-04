@@ -1,22 +1,14 @@
 from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError
-from drf_yasg.utils import swagger_auto_schema
 from rest_framework import status
 from rest_framework.generics import CreateAPIView
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework import generics, permissions
-
-
+from rest_framework import  permissions
 from django.contrib.auth import authenticate, login, get_user_model
-from django.views.decorators.csrf import ensure_csrf_cookie
-from django.utils.decorators import method_decorator
-
 from rest_framework import generics
 from django.contrib.auth import logout
 from django.http import HttpResponse
-
-
 from .models import User
 from .serializers import UserRegistrationSerializer, UserSerializer, PasswordSerializer
 
@@ -53,20 +45,6 @@ class LoginView(APIView):
             # Неуспешная аутентификация
             response_data = {'error': 'Invalid username or password'}
             return Response(response_data, status=status.HTTP_401_UNAUTHORIZED)
-
-
-# class UserProfileView(generics.RetrieveUpdateAPIView):
-#     permission_classes = [permissions.IsAuthenticated]
-#
-#     @method_decorator(ensure_csrf_cookie)
-#     def dispatch(self, *args, **kwargs):
-#         return super().dispatch(*args, **kwargs)
-#
-#     def get_object(self):
-#         return self.request.user
-#
-#     def get_serializer_class(self):
-#         return UserSerializer
 
 
 class UserProfileView(generics.RetrieveUpdateDestroyAPIView):

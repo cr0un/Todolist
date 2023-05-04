@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'social_django',
 
     'core',
+    'goals'
 ]
 
 MIDDLEWARE = [
@@ -78,9 +79,11 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': os.environ.get('DB_NAME'),
+        # 'NAME': 'postgres',
         'USER': os.environ.get('DB_USER'),
         'PASSWORD': os.environ.get('DB_PASSWORD'),
         'HOST': os.environ.get('DB_HOST'),
+        # 'HOST': 'localhost',
         'PORT': os.environ.get('DB_PORT'),
     }
 }
@@ -145,7 +148,7 @@ SOCIAL_AUTH_VK_OAUTH2_REDIRECT_URL = '/'
 
 # Указывает адрес для перенаправления после успешного входа и ошибки
 SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/'
-SOCIAL_AUTH_NEW_USER_REDIRECT_URL = '/logged_in/'
+SOCIAL_AUTH_NEW_USER_REDIRECT_URL = '/logged-in/'
 SOCIAL_AUTH_LOGIN_ERROR_URL = '/login-error/'
 
 # Путь для хранения данных о социальной авторизации пользователя
@@ -153,5 +156,8 @@ SOCIAL_AUTH_USER_MODEL = AUTH_USER_MODEL
 CORS_ORIGIN_ALLOW_ALL = True
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+APPEND_SLASH=False
+
 
 

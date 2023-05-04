@@ -11,7 +11,7 @@ from Todolist import settings
 schema_view = get_schema_view(
     openapi.Info(
         title="TodoList API",
-        default_version='v1',
+        default_version='v1.0.1',
         description="TodoList API",
     ),
     public=True,
@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('core/', include('core.urls')),
     path('oauth/', include('social_django.urls', namespace='social')),
+    path("goals/", include("goals.urls")),
     
     re_path(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
     re_path(r'^swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),

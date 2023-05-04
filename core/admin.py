@@ -4,6 +4,8 @@ from django.contrib import messages
 from django.contrib.auth.admin import UserAdmin as DefaultUserAdmin
 from django.contrib.auth.forms import SetPasswordForm
 from django.utils.translation import gettext_lazy as _
+
+from goals.models import GoalCategory
 from .models import User
 
 
@@ -65,3 +67,11 @@ class UserChangePasswordForm(SetPasswordForm):
         password = self.fields.get('password')
         if password:
             password.help_text = password.help_text.format(**{'password_url': '../password/'})
+
+
+class GoalCategoryAdmin(admin.ModelAdmin):
+    list_display = ("title", "user", "created", "updated")
+    search_fields = ("title", "user")
+
+
+admin.site.register(GoalCategory, GoalCategoryAdmin)
