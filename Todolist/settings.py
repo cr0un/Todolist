@@ -32,7 +32,6 @@ INSTALLED_APPS = [
     'drf_yasg',
     'corsheaders',
     'social_django',
-
     'core',
     'goals'
 ]
