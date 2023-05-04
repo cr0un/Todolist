@@ -41,7 +41,7 @@ jobs:
 
       - name: Prepare deployment folder
         run: |
-          mkdir deploy
+#          mkdir deploy
           cat docker-compose-ci.yaml | envsubst > deploy/docker-compose.yaml
 
       - name: Set permissions on server
