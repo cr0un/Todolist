@@ -29,6 +29,7 @@ services:
       - ./Todolist:/Todolist/Todolist
       - ./Todolist/staticfiles:/Todolist/staticfiles
       - ./django_media:/Todolist/django_media
+      - ./goals:/Todolist/goals
     command: >
       sh -c "python manage.py makemigrations && python manage.py migrate"
 
