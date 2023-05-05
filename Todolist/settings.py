@@ -15,7 +15,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -155,11 +155,11 @@ SOCIAL_AUTH_LOGIN_ERROR_URL = '/login-error/'
 
 # Путь для хранения данных о социальной авторизации пользователя
 SOCIAL_AUTH_USER_MODEL = AUTH_USER_MODEL
-CORS_ORIGIN_ALLOW_ALL = True
+# CORS_ORIGIN_ALLOW_ALL = True
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-APPEND_SLASH = False
+# APPEND_SLASH = False
 
 
 
