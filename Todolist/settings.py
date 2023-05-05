@@ -31,9 +31,11 @@ INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',
     'drf_yasg',
     'corsheaders',
+
+    'goals',
     'social_django',
     'core',
-    'goals'
+
 ]
 
 MIDDLEWARE = [
