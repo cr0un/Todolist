@@ -31,8 +31,8 @@ services:
       - ./django_media:/Todolist/django_media
       - ./goals:/Todolist/goals
       - ./core:/Todolist/core
-    command: >
-      sh -c "python manage.py makemigrations && python manage.py migrate"
+#    command: >
+#      sh -c "python manage.py makemigrations && python manage.py migrate"
 
   front:
     image: sermalenk/skypro-front:lesson-38
