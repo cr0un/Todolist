@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',
     'drf_yasg',
     'corsheaders',
+    'django_filters',
 
     'goals',
     'social_django',
