@@ -31,22 +31,20 @@ services:
       - ./django_media:/Todolist/django_media
       - ./goals:/Todolist/goals
       - ./core:/Todolist/core
-#    command: >
-#      sh -c "python manage.py makemigrations && python manage.py migrate"
+    command: >
+      sh -c "python manage.py makemigrations && python manage.py migrate"
 
-#  front:
-#    build:
-#      context: ./front
-#      dockerfile: docker/Dockerfile
-#    depends_on:
-#      api:
-#        condition: service_started
-#    ports:
-#      - "8080:80"
-#    environment:
-#      - REACT_APP_API_URL=http://api:8080/
-##      - REACT_APP_API_URL=/api
-
+  front:
+    image: sermalenk/skypro-front:lesson-38
+    restart: always
+    ports:
+      - "8080:80"
+    depends_on:
+      api:
+        condition: service_started
+    volumes:
+      - ./deploy/nginx.conf:/etc/nginx/conf.d/default.conf
+#      - django_static:/usr/share/nginx/html/static
 
 
 
