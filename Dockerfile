@@ -25,7 +25,7 @@
 FROM python:3.10
 
 # Рабочая директория
-WORKDIR /Todolist/
+WORKDIR /todolist/
 
 # Установка зависимостей
 COPY poetry.lock .
