@@ -110,5 +110,3 @@ class GoalCommentView(RetrieveUpdateDestroyAPIView):
         return GoalComment.objects.filter(user=self.request.user)
 
 
-
-

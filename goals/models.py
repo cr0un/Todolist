@@ -77,5 +77,3 @@ class GoalComment(models.Model):
             self.created = timezone.now()
         self.updated = timezone.now()
         return super().save(*args, **kwargs)
-
-
