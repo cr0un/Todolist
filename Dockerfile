@@ -4,7 +4,7 @@
 #ENV PATH="/app/env/bin:$PATH"
 #
 ## Рабочая директория
-#WORKDIR /Todolist/
+#WORKDIR /Todolist
 #
 ## Установка зависимостей
 #COPY poetry.lock .
@@ -21,11 +21,15 @@
 #CMD ["gunicorn", "Todolist.wsgi:application", "--bind", "0.0.0.0:8000"]
 
 
+
 # Новый конфиг
 FROM python:3.10
 
+RUN python -m venv /app/env
+ENV PATH="/app/env/bin:$PATH"
+
 # Рабочая директория
-WORKDIR /todolist/
+WORKDIR /Todolist
 
 # Установка зависимостей
 COPY poetry.lock .
