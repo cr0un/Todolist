@@ -27,9 +27,9 @@ services:
     env_file:
       - .env
     volumes:
-#      - ./Todolist:/Todolist/Todolist
-#      - ./core:/Todolist/core
-#      - ./goals:/Todolist/goals
+      - ./Todolist:/Todolist/Todolist
+      - ./core:/Todolist/core
+      - ./goals:/Todolist/goals
       - django_static:/Todolist/static
 
   front:
