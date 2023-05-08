@@ -1,18 +1,21 @@
 from django.urls import path
-from goals import views
-from goals.views import GoalCommentCreateView, GoalCommentListView, GoalCommentView
+from goals.views import category, comment, goal, board
 
 
 urlpatterns = [
-    path("goal_category/create", views.GoalCategoryCreateView.as_view()),
-    path("goal_category/list", views.GoalCategoryListView.as_view()),
-    path("goal_category/<pk>", views.GoalCategoryView.as_view()),
+    path('goal_category/create', category.GoalCategoryCreateView.as_view()),
+    path('goal_category/list', category.GoalCategoryListView.as_view()),
+    path('goal_category/<pk>', category.GoalCategoryView.as_view()),
 
-    path("goal/create", views.GoalCreateView.as_view()),
-    path("goal/list", views.GoalListView.as_view()),
-    path("goal/<pk>", views.GoalView.as_view()),
+    path('goal/create', goal.GoalCreateView.as_view()),
+    path('goal/list', goal.GoalListView.as_view()),
+    path('goal/<pk>', goal.GoalView.as_view()),
 
-    path("goal_comment/create", GoalCommentCreateView.as_view(), name="goal_comment_create"),
-    path("goal_comment/list", GoalCommentListView.as_view(), name="goal_comment_list"),
-    path("goal_comment/<int:pk>", GoalCommentView.as_view(), name="goal_comment_view"),
+    path('goal_comment/create', comment.GoalCommentCreateView.as_view(), name='goal_comment_create'),
+    path('goal_comment/list', comment.GoalCommentListView.as_view(), name='goal_comment_list'),
+    path('goal_comment/<int:pk>', comment.GoalCommentView.as_view(), name='goal_comment_view'),
+
+    path('board/create', board.BoardCreateView.as_view(), name='create_board'),
+    path('board/list', board.BoardListView.as_view(), name='board_list'),
+    path('board/<int:pk>', board.BoardView.as_view(), name='retrieve_update_destroy_board'),
 ]

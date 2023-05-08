@@ -5,7 +5,7 @@ from django.contrib.auth.admin import UserAdmin as DefaultUserAdmin
 from django.contrib.auth.forms import SetPasswordForm
 from django.utils.translation import gettext_lazy as _
 
-from goals.models import GoalCategory
+from goals.models import GoalCategory, Board
 from .models import User
 
 
@@ -75,3 +75,13 @@ class GoalCategoryAdmin(admin.ModelAdmin):
 
 
 admin.site.register(GoalCategory, GoalCategoryAdmin)
+
+
+class BoardAdmin(admin.ModelAdmin):
+    list_display = ("title", "created", "updated", "is_deleted")
+    search_fields = ("title",)
+    list_filter = ("is_deleted",)
+
+admin.site.register(Board, BoardAdmin)
+
+

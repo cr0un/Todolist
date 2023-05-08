@@ -14,23 +14,6 @@ services:
       timeout: 5s
       retries: 5
 
-#  api:
-#    build:
-#      context: .
-#    ports:
-#      - 8000:8000
-#    depends_on:
-#      db:
-#        condition: service_healthy
-#    env_file:
-#      - .env
-#    volumes:
-#      - ./Todolist:/Todolist/Todolist
-##      - ./Todolist/staticfiles:/Todolist/staticfiles
-#      - django_static:/Todolist/static
-#      - ./django_media:/Todolist/django_media
-#      - ./goals:/Todolist/goals
-
   api:
     build: .
     restart: always
@@ -50,10 +33,10 @@ services:
       - django_static:/Todolist/static
 
   front:
-    image: sermalenk/skypro-front:lesson-36
+    image: sermalenk/skypro-front:lesson-37
     restart: always
     ports:
-      - "8080:80"
+      - "80:80"
     depends_on:
       api:
         condition: service_started

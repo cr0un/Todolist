@@ -23,7 +23,8 @@ ENTRYPOINT ["bash", "entrypoint.sh"]
 EXPOSE 8000
 
 # Запуск приложения
-CMD ["gunicorn", "Todolist.wsgi:application", "--bind", "0.0.0.0:8000"]
+#CMD ["gunicorn", "Todolist.wsgi:application", "--bind", "0.0.0.0:8000"]
+CMD ["gunicorn", "Todolist.wsgi", "-w", "4", "-b", "0.0.0.0:8000"]
 
 
 

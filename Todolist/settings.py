@@ -27,10 +27,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 'whitenoise.runserver_nostatic',
+    'rest_framework',
     'django_filters',
     'drf_yasg',
-    # 'corsheaders',
     'social_django',
 
     'goals',
@@ -38,10 +37,8 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    # 'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    # 'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -130,6 +127,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+}
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
@@ -152,10 +152,6 @@ SOCIAL_AUTH_LOGIN_ERROR_URL = '/login-error/'
 # Путь для хранения данных о социальной авторизации пользователя
 SOCIAL_AUTH_USER_MODEL = AUTH_USER_MODEL
 
-# Прошлые настройки
-# CORS_ORIGIN_ALLOW_ALL = True
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-# APPEND_SLASH = False
 
 
 
