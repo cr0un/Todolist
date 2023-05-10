@@ -1,4 +1,3 @@
-from django.db.models import Q
 from rest_framework import permissions
 from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.exceptions import PermissionDenied

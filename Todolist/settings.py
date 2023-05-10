@@ -34,6 +34,7 @@ INSTALLED_APPS = [
 
     'goals',
     'core',
+    'bot',
 ]
 
 MIDDLEWARE = [
@@ -76,9 +77,12 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': os.environ.get('DB_NAME'),
+        # 'NAME': 'postgres',
         'USER': os.environ.get('DB_USER'),
+        # 'USER': 'postgres',
         'PASSWORD': os.environ.get('DB_PASSWORD'),
         'HOST': os.environ.get('DB_HOST'),
+        # 'HOST': 'localhost',
         'PORT': os.environ.get('DB_PORT'),
     }
 }
@@ -151,6 +155,11 @@ SOCIAL_AUTH_LOGIN_ERROR_URL = '/login-error/'
 
 # Путь для хранения данных о социальной авторизации пользователя
 SOCIAL_AUTH_USER_MODEL = AUTH_USER_MODEL
+
+BOT_TOKEN = os.environ.get('BOT_TOKEN')
+
+
+
 
 
 

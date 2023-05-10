@@ -33,7 +33,7 @@ services:
       - django_static:/Todolist/static
 
   front:
-    image: sermalenk/skypro-front:lesson-37
+    image: sermalenk/skypro-front:lesson-38
     restart: always
     ports:
       - "8080:8080"
