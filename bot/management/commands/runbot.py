@@ -11,7 +11,7 @@ class Command(BaseCommand):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.tg_client = TgClient()
-        self.user_sessions = {}
+        self.user_sessions: dict = {}
 
     def handle(self, *args, **options):
         offset = 0
@@ -45,7 +45,7 @@ class Command(BaseCommand):
             )
 
             serialized_goals = GoalSerializer(goals, many=True)
-            goals_text = ""
+            goals_text: str = ""
 
             for idx, goal in enumerate(serialized_goals.data, start=1):
                 goals_text += f"{idx}. {goal['title']}\n"
@@ -63,14 +63,14 @@ class Command(BaseCommand):
 
         elif session_data.get("creating_goal"):
             if session_data.get("category_id"):
-                goal_title = msg.text
-                category_id = session_data["category_id"]
+                goal_title: str = msg.text
+                category_id: int = session_data["category_id"]
                 self.create_goal(tg_user, category_id, goal_title)
                 del session_data["creating_goal"]
                 del session_data["category_id"]
                 self.tg_client.send_message(chat_id=tg_user.chat_id, text=f"Цель '{goal_title}' создана.")
             else:
-                category_id = msg.text
+                category_id: str = msg.text
                 if self.is_valid_category_id(tg_user, category_id):
                     session_data["category_id"] = category_id
                     self.user_sessions[tg_user.chat_id] = session_data
@@ -119,4 +119,3 @@ class Command(BaseCommand):
         user = tg_user.user
         category = GoalCategory.objects.get(id=category_id)
         Goal.objects.create(user=user, category=category, title=goal_title)
-

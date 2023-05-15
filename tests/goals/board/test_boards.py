@@ -43,7 +43,3 @@ class TestBoardCreateView:
         board_participant = BoardParticipant.objects.get(user_id=user.id)
         assert board_participant.board_id == response.data['id']
         assert board_participant.role == BoardParticipant.Role.owner
-
-
-
-

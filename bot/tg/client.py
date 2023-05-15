@@ -4,7 +4,6 @@ from Todolist import settings
 from bot.tg.dc import GetUpdatesResponse, SendMessageResponse
 import logging
 
-
 logger = logging.getLogger(__name__)
 
 

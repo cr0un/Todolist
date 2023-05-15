@@ -4,7 +4,7 @@ from rest_framework import status
 from rest_framework.generics import CreateAPIView
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework import  permissions
+from rest_framework import permissions
 from django.contrib.auth import authenticate, login, get_user_model
 from rest_framework import generics
 from django.contrib.auth import logout
@@ -23,8 +23,8 @@ class UserRegistrationView(CreateAPIView):
 class LoginView(APIView):
     def post(self, request):
         # Получение данных из тела запроса
-        username = request.data.get('username')
-        password = request.data.get('password')
+        username: str = request.data.get('username')
+        password: str = request.data.get('password')
 
         # Аутентификация пользователя
         user = authenticate(request, username=username, password=password)
@@ -33,7 +33,7 @@ class LoginView(APIView):
             # Успешная аутентификация и вход
             login(request, user)
             # Возвращаем данные пользователя в ответе
-            response_data = {
+            response_data: dict = {
                 'id': user.id,
                 'username': user.username,
                 'first_name': user.first_name,
@@ -43,7 +43,7 @@ class LoginView(APIView):
             return Response(response_data, status=status.HTTP_200_OK)
         else:
             # Неуспешная аутентификация
-            response_data = {'error': 'Invalid username or password'}
+            response_data: dict = {'error': 'Invalid username or password'}
             return Response(response_data, status=status.HTTP_401_UNAUTHORIZED)
 
 
@@ -69,8 +69,8 @@ class UpdatePasswordView(generics.UpdateAPIView):
 
     def update(self, request, *args, **kwargs):
         user = self.get_object()
-        old_password = request.data.get('old_password')
-        new_password = request.data.get('new_password')
+        old_password: str = request.data.get('old_password')
+        new_password: str = request.data.get('new_password')
 
         if not user.check_password(old_password):
             return Response({"error": "Old password is incorrect"}, status=status.HTTP_400_BAD_REQUEST)
@@ -88,11 +88,6 @@ class UpdatePasswordView(generics.UpdateAPIView):
 def logged_in(request):
     return HttpResponse('Успешный вход через VK')
 
+
 def login_error(request):
     return HttpResponse('Ошибка входа через VK')
-
-
-
-
-
-

@@ -55,25 +55,6 @@ class GoalView(RetrieveUpdateDestroyAPIView):
         return instance
 
 
-# class GoalListView(ListAPIView):
-#     model = Goal
-#     serializer_class = GoalSerializer
-#     permission_classes = [permissions.IsAuthenticated]
-#     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
-#     filterset_class = GoalDateFilter
-#     search_fields = ["title", "description"]
-#     ordering_fields = ["title", "created"]
-#
-#     filterset_fields = ["category"]
-#
-#     def get_queryset(self):
-#         return Goal.objects.filter(
-#             is_deleted=False,
-#             category__is_deleted=False,
-#             category__board__participants__user=self.request.user
-#         )
-
-
 class GoalListView(ListAPIView):
     model = Goal
     serializer_class = GoalSerializer

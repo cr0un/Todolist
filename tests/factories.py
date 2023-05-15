@@ -58,4 +58,3 @@ class GoalFactory(DatesFactoryMixin):
 
     class Meta:
         model = Goal
-

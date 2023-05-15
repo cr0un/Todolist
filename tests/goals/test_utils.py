@@ -98,6 +98,3 @@ def add_participant_to_board(board, user, role):
         user=user,
         role=role,
     )
-
-
-

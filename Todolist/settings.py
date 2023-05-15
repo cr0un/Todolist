@@ -53,8 +53,7 @@ ROOT_URLCONF = 'Todolist.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
-        ,
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -157,10 +156,3 @@ SOCIAL_AUTH_USER_MODEL = AUTH_USER_MODEL
 
 # Токен для бота ТГ
 BOT_TOKEN = os.environ.get('BOT_TOKEN')
-
-
-
-
-
-
-

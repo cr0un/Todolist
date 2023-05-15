@@ -36,4 +36,3 @@ class TestUserRegistrationView:
         }
         response = client.post(url, data, format='json')
         assert response.status_code == status.HTTP_400_BAD_REQUEST
-

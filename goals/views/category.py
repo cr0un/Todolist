@@ -43,11 +43,9 @@ class GoalCategoryView(RetrieveUpdateDestroyAPIView):
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
     filterset_fields = ["board"]
 
-
     def get_queryset(self):
         user_boards = Board.objects.filter(participants__user=self.request.user)
         return GoalCategory.objects.filter(board__in=user_boards, is_deleted=False)
-
 
     def perform_destroy(self, instance):
         board = instance.board

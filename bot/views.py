@@ -25,7 +25,6 @@ class VerificationsCodeView(generics.GenericAPIView):
 
         tg_user.user = request.user
         tg_user.save()
-
         TgClient().send_message(chat_id=tg_user.chat_id, text='Бот верифицирован')
 
         return Response(TgUserSerializer(tg_user).data)

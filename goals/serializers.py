@@ -93,14 +93,6 @@ class BoardCreateSerializer(serializers.ModelSerializer):
         read_only_fields = ("id", "created", "updated")
         fields = "__all__"
 
-    # class Meta:
-    #     model = Board
-    #     read_only_fields = ("id", "created", "updated")
-    #     exclude = ("is_deleted",)
-    #     extra_kwargs = {
-    #         "is_deleted": {"default": serializers.CreateOnlyDefault(False)}
-    #     }
-
     def validate_is_deleted(self, value):
         if value:
             raise serializers.ValidationError("Некорректное значение is_deleted")

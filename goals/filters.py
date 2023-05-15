@@ -14,7 +14,7 @@ class GoalDateFilter(rest_framework.FilterSet):
             "priority": ("exact", "in"),
         }
 
-    filter_overrides = {
+    filter_overrides: dict = {
         models.DateTimeField: {"filter_class": django_filters.IsoDateTimeFilter},
     }
 

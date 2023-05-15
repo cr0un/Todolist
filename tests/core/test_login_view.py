@@ -32,5 +32,3 @@ class TestLoginView:
         }
         response = client.post(url, data, format='json')
         assert response.status_code == status.HTTP_401_UNAUTHORIZED
-
-
