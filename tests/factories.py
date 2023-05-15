@@ -4,8 +4,7 @@ from factory.django import DjangoModelFactory
 from factory import Faker
 from core.models import User
 from pytest_factoryboy import register
-
-from goals.models import Board, GoalCategory
+from goals.models import Board, GoalCategory, Goal
 
 
 @register
@@ -48,3 +47,15 @@ class GoalCategoryFactory(factory.django.DjangoModelFactory):
     title = factory.Faker("sentence")
     board = factory.SubFactory(BoardFactory)
     user = factory.SubFactory(UserFactory)
+
+
+@register
+class GoalFactory(DatesFactoryMixin):
+    title = factory.Faker('sentence')
+    description = factory.Faker('text')
+    category = factory.SubFactory(GoalCategoryFactory)
+    user = factory.SubFactory(UserFactory)
+
+    class Meta:
+        model = Goal
+

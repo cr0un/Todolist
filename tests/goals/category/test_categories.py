@@ -5,21 +5,23 @@ from goals.models import GoalCategory
 from tests.factories import GoalCategoryFactory, UserFactory
 from tests.goals.test_utils import create_board_and_category, add_participant_to_board
 
-pytestmark = pytest.mark.django_db
 
-
+@pytest.mark.django_db
 class TestCategoriesView:
-    # Тест 1: Проверка успешного создания категории
     def test_create_goal_category_success(self, client, user):
+        """
+        Проверка успешного создания категории
+        """
         client.force_authenticate(user=user)
         board, category = create_board_and_category(client, user)
 
         assert category is not None
         assert GoalCategory.objects.filter(title="Test Category", board=board).exists()
 
-
-    # Тест 2: Проверка успешного получения категории
     def test_retrieve_goal_category_success(self, client, user):
+        """
+        Проверка успешного получения категории
+        """
         client.force_authenticate(user=user)
         board, category = create_board_and_category(client, user)
         url = reverse("goals:retrieve_update_destroy_goal_category", args=[category.id])
@@ -28,9 +30,10 @@ class TestCategoriesView:
         assert response.status_code == status.HTTP_200_OK
         assert response.data["id"] == category.id
 
-
-    # Тест 3: Проверка успешного удаления категории
     def test_delete_goal_category_success(self, client, user):
+        """
+        Проверка успешного удаления категории
+        """
         client.force_authenticate(user=user)
 
         # Создание доски и категории с использованием вспомогательной функции
@@ -43,9 +46,10 @@ class TestCategoriesView:
         assert response.status_code == status.HTTP_204_NO_CONTENT
         assert not GoalCategory.objects.exclude(id=category.id).exists()
 
-
-    # Тест 4: Проверка успешного обновления категории
     def test_update_goal_category_success(self, client, user):
+        """
+        Проверка успешного обновления категории
+        """
         client.force_authenticate(user=user)
 
         # Создание доски и категории с использованием вспомогательной функции
@@ -62,9 +66,10 @@ class TestCategoriesView:
         assert response.data["title"] == new_title
         assert GoalCategory.objects.get(id=category.id).title == new_title
 
-
-    # Тест 5: Проверка отказа в получении категории, если это не владелец категории
     def test_retrieve_goal_category_permission_denied(self, client, user):
+        """
+        Проверка отказа в получении категории, если это не владелец категории
+        """
         client.force_authenticate(user=user)
         category = GoalCategoryFactory()
 
@@ -81,9 +86,10 @@ class TestCategoriesView:
         assert response.status_code == status.HTTP_404_NOT_FOUND
         assert response.data["detail"] == "Not found."
 
-
-    # Тест 6: Юзер с ролью "читатель" не может редактировать категорию
     def test_update_goal_category_writter_denied(self, client, user):
+        """
+        Юзер с ролью "читатель" не может редактировать категорию
+        """
         client.force_authenticate(user=user)
 
         # Создание доски и категории с использованием вспомогательной функции
@@ -109,9 +115,10 @@ class TestCategoriesView:
         assert response.status_code == status.HTTP_403_FORBIDDEN
         assert GoalCategory.objects.get(id=category.id).title != new_title
 
-
-    # Тест 7: Юзер с ролью "редактор" может редактировать категорию
     def test_update_goal_category_editor_success(self, client):
+        """
+        Юзер с ролью "редактор" может редактировать категорию
+        """
         # Создаем двух пользователей
         user1 = UserFactory()
         user2 = UserFactory()
@@ -140,9 +147,3 @@ class TestCategoriesView:
         assert response.status_code == status.HTTP_200_OK
         assert response.data["title"] == new_title
         assert GoalCategory.objects.get(id=category.id).title == new_title
-
-
-
-
-
-

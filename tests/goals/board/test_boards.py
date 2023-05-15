@@ -1,6 +1,4 @@
 from typing import Callable
-from unittest.mock import ANY
-
 import pytest
 from django.urls import reverse
 from rest_framework import status
@@ -46,16 +44,6 @@ class TestBoardCreateView:
         assert board_participant.board_id == response.data['id']
         assert board_participant.role == BoardParticipant.Role.owner
 
-    # def _serialize_board_response(self, **kwargs) -> dict:
-    #     data = {
-    #         'id': ANY,
-    #         'created': ANY,
-    #         'updated': ANY,
-    #         'title': ANY,
-    #         'is_deleted': False
-    #     }
-    #     data |= kwargs
-    #     return data
 
 
 

@@ -76,13 +76,10 @@ WSGI_APPLICATION = 'Todolist.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        # 'NAME': os.environ.get('DB_NAME'),
-        'NAME': 'postgres',
-        # 'USER': os.environ.get('DB_USER'),
-        'USER': 'postgres',
+        'NAME': os.environ.get('DB_NAME'),
+        'USER': os.environ.get('DB_USER'),
         'PASSWORD': os.environ.get('DB_PASSWORD'),
-        # 'HOST': os.environ.get('DB_HOST'),
-        'HOST': 'localhost',
+        'HOST': os.environ.get('DB_HOST'),
         'PORT': os.environ.get('DB_PORT'),
     }
 }
@@ -140,8 +137,10 @@ AUTHENTICATION_BACKENDS = (
     'social_core.backends.vk.VKOAuth2',
 )
 
+# Модель юзера
 AUTH_USER_MODEL = 'core.User'
 
+# Авторизация VK
 SOCIAL_AUTH_JSONFIELD_ENABLED = True
 SOCIAL_AUTH_VK_OAUTH2_KEY = os.environ.get('SOCIAL_AUTH_VK_OAUTH2_KEY')
 SOCIAL_AUTH_VK_OAUTH2_SECRET = os.environ.get('SOCIAL_AUTH_VK_OAUTH2_SECRET')
@@ -156,6 +155,7 @@ SOCIAL_AUTH_LOGIN_ERROR_URL = '/login-error/'
 # Путь для хранения данных о социальной авторизации пользователя
 SOCIAL_AUTH_USER_MODEL = AUTH_USER_MODEL
 
+# Токен для бота ТГ
 BOT_TOKEN = os.environ.get('BOT_TOKEN')
 
 
