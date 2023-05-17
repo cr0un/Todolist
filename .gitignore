@@ -163,3 +163,4 @@ cython_debug/
 postgres-data/
 
 old_action.yml
+.flake8
