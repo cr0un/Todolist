@@ -135,7 +135,8 @@ jobs:
             echo ${{ secrets.SSH_PASSWORD }} | sudo -S chmod -R 755 /home/deploy/todolist/
 
       - name: clone files to server
-        uses: appleboy/scp-action@master
+#        uses: appleboy/scp-action@master
+        uses: appleboy/scp-action@v0.1.4
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.SSH_USERNAME }}
