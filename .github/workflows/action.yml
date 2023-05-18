@@ -77,4 +77,4 @@ jobs:
             cd todolist
             ls -la
             docker-compose pull
-            echo ${{ secrets.SSH_PASSWORD }} | sudo -S docker-compose up -d
+            docker-compose up -d
