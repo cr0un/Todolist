@@ -8,8 +8,8 @@ on:
 
 jobs:
   build_and_push:
-#    if: github.ref == 'refs/heads/master' # Условие выполнения сборки и пуша для ветки master.
-    if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/master' # Условие выполнения сборки и пуша для ветки master.
+#    if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     env:
       GITHUB_REF_NAME: ${{ github.ref_name }}
