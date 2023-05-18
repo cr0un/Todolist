@@ -57,7 +57,7 @@ jobs:
 #          script: |
 #            echo ${{ secrets.SSH_PASSWORD }} | chown -R ${{ secrets.SSH_USERNAME }}: /home/deploy/todolist/
 #            echo ${{ secrets.SSH_PASSWORD }} | chmod -R 755 /home/deploy/todolist/
-
+      - uses: actions/checkout@v3
       - name: clone files to server
         uses: appleboy/scp-action@master
         with:
