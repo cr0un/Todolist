@@ -64,8 +64,10 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           password: ${{ secrets.SSH_PASSWORD }}
-          source: "."
-          target: "/home/deploy/todolist/"
+#          source: "."
+          source: "deploy/*"
+#          target: "/home/deploy/todolist/"
+          target: "todolist"
           strip_components: 1
 
       - name: run docker-compose
