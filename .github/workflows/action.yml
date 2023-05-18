@@ -80,7 +80,7 @@
 #            docker-compose pull
 #            docker-compose up -d
 
-name: Build_and_deploy_
+name: Build_and_deploy
 
 on:
   push:
