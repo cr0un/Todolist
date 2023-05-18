@@ -57,18 +57,27 @@ jobs:
 #          script: |
 #            echo ${{ secrets.SSH_PASSWORD }} | chown -R ${{ secrets.SSH_USERNAME }}: /home/deploy/todolist/
 #            echo ${{ secrets.SSH_PASSWORD }} | chmod -R 755 /home/deploy/todolist/
-      - uses: actions/checkout@v3
+
+#      - name: clone files to server
+#        uses: appleboy/scp-action@master
+#        with:
+#          host: ${{ secrets.HOST }}
+#          username: ${{ secrets.SSH_USERNAME }}
+#          password: ${{ secrets.SSH_PASSWORD }}
+##          source: "."
+#          source: "deploy/*"
+##          target: "/home/deploy/todolist/"
+#          target: "todolist"
+#          strip_components: 1
+
       - name: clone files to server
-        uses: appleboy/scp-action@master
+        uses: scp-files/action@master
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           password: ${{ secrets.SSH_PASSWORD }}
-#          source: "."
           source: "deploy/*"
-#          target: "/home/deploy/todolist/"
           target: "todolist"
-          strip_components: 1
 
       - name: run docker-compose
         uses: appleboy/ssh-action@master
