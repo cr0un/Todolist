@@ -27,7 +27,7 @@ jobs:
         run: docker push cr0un/todolist:${{ github.ref_name }}-${{ github.run_id }}
 
   deploy:
-    if: github.ref == 'refs/heads/main' # Условие выполнения деплоя только для ветки main
+    if: github.ref == 'refs/heads/main' #Условие выполнения деплоя только для ветки main
     runs-on: ubuntu-latest
     needs: build_and_push
     env:
