@@ -59,7 +59,6 @@ services:
       - ./bot:/todolist/bot
     command: python ./manage.py runbot
 
-
 volumes:
   todolist_pg_data:
     driver: local
